@@ -3,7 +3,7 @@
 %bcond_without	doc	# API documentation
 %bcond_without	tests	# unit tests
 %bcond_without	python2 # CPython 2.x module
-%bcond_without	python3 # CPython 3.x module
+%bcond_with	python3 # CPython 3.x module (built from python3-ZODB.spec)
 
 %define		module		ZODB
 Summary:	Python object-oriented database
@@ -42,12 +42,17 @@ BuildRequires:	python-zope.testrunner >= 4.4.6
 BuildRequires:	python3-modules >= 1:3.5
 BuildRequires:	python3-setuptools
 %if %{with tests}
-BuildRequires:	python3-BTrees
+BuildRequires:	python3-BTrees >= 4.2.0
 BuildRequires:	python3-ZConfig
-BuildRequires:	python3-persistent
-BuildRequires:	python3-transaction
+BuildRequires:	python3-manuel
+BuildRequires:	python3-persistent >= 4.4.0
+BuildRequires:	python3-six
+BuildRequires:	python3-transaction >= 2.4
 BuildRequires:	python3-zc.lockfile
-BuildRequires:	python3-zodbpickle
+BuildRequires:	python3-zodbpickle >= 1.0.1
+BuildRequires:	python3-zope.interface
+BuildRequires:	python3-zope.testing
+BuildRequires:	python3-zope.testrunner >= 4.4.6
 %endif
 %endif
 %if %{with doc}
